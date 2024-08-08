@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        font-family: sans-serif;
+      }
+      body {
+        display: grid;
+        height: 100vh;
+        place-items: center;
+        background-color: #000;
+      }
+      div {
+        width: 250px;
+        border: 1px solid #fff;
+        margin: auto;
+        display: flex;
+        justify-content: space-evenly;
+        align-items: center;
+        padding: 2px;
+        background: linear-gradient(135deg, #14ffe9, #ffeb3b, #ff00e0);
+        border-radius: 10px;
+        animation: animate 1.5s linear infinite;
+      }
+      @keyframes animate {
+        100% {
+          filter: hue-rotate(360deg);
+        }
+      }
+      #p1 {
+        padding: 10px;
+        color: #fff;
+        line-height: 60px;
+        background-color: #000;
+        width: 90%;
+        text-align: center;
+        font-size: 30px;
+        border-radius: 6px;
+        font-weight: bold;
+      }
+    </style>
+  </head>
+  <body>
+    <div>
+      <p id="p1">12 : 00 : 00</p>
+    </div>
+  </body>
+  <script>
+    setInterval(() => {
+      let todayDate = new Date();
+      let p1 = document.querySelector("#p1");
+
+      let nowHour = todayDate.getHours();
+      let nowMin = todayDate.getMinutes();
+      let nowSec = todayDate.getSeconds();
+      let nowAP = "AM";
+
+      if (nowHour >= 12) {
+        nowAP = "PM";
+        nowHour -= 12;
+      } 
+      if(nowHour < 10){
+        nowHour= '0' + nowHour
+      }
+      if(nowMin < 10){
+        nowMin= '0' + nowMin
+      }
+      if(nowSec < 10){
+        nowSec= '0' + nowSec
+      }
+
+      p1.textContent = nowHour + " : " + nowMin + " : " + nowSec + " " + nowAP;
+    });
+  </script>
+</html>
